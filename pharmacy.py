@@ -87,7 +87,7 @@ class PharmacyManagementSystem:
         lblrefno=Label(DataFrameLeft,font=("arial",12,"bold"),text="Reference No",padx=2)
         lblrefno.grid(row=0,column=0,sticky=W)
 
-        conn=mysql.connector.connect(host="localhost",username="root",password="deshna_123",database="mydata")
+        conn=mysql.connector.connect(host="localhost",username="root",password="root",database="mydata")
         my_cursor=conn.cursor()
         my_cursor.execute("select Ref from pharma")
         row=my_cursor.fetchall()
@@ -115,7 +115,7 @@ class PharmacyManagementSystem:
         lblMedicineName=Label(DataFrameLeft,font=("arial",12,"bold"),text="Medicine Name",padx=2,pady=6)
         lblMedicineName.grid(row=3,column=0,sticky=W)
 
-        conn=mysql.connector.connect(host="localhost",username="root",password="deshna_123",database="mydata")
+        conn=mysql.connector.connect(host="localhost",username="root",password="root",database="mydata")
         my_cursor=conn.cursor()
         my_cursor.execute("select MedName from pharma")
         med=my_cursor.fetchall()
@@ -324,7 +324,7 @@ class PharmacyManagementSystem:
         # Add Medicine functionality declaration
 
     def AddMed(self):
-        conn=mysql.connector.connect(host="localhost",username="root",password="deshna_123",database="mydata")
+        conn=mysql.connector.connect(host="localhost",username="root",password="root",database="mydata")
         my_cursor=conn.cursor()
         my_cursor.execute("insert into pharma(Ref,MedName) values(%s,%s)",(self.refMed_var.get(),self.addmed_var.get()))
         
@@ -335,7 +335,7 @@ class PharmacyManagementSystem:
         messagebox.showinfo("Success","Medicine Added")
 
     def fetch_dataMed(self):
-        conn=mysql.connector.connect(host="localhost",username="root",password="deshna_123",database="mydata")
+        conn=mysql.connector.connect(host="localhost",username="root",password="root",database="mydata")
         my_cursor=conn.cursor()
         my_cursor.execute("select * from pharma")
         rows=my_cursor.fetchall()
@@ -358,7 +358,7 @@ class PharmacyManagementSystem:
         if self.refMed_var.get()=="" or self.addmed_var.get()=="":
             messagebox.showerror("Error","All fields are Required")
         else:
-            conn=mysql.connector.connect(host="localhost",username="root",password="deshna_123",database="mydata")
+            conn=mysql.connector.connect(host="localhost",username="root",password="root",database="mydata")
             my_cursor=conn.cursor()
             my_cursor.execute("update pharma set MedName=%s where Ref=%s",(self.addmed_var.get(),self.refMed_var.get()))
 
@@ -369,7 +369,7 @@ class PharmacyManagementSystem:
         messagebox.showinfo("Success","Medicine has been Updated")
 
     def DeleteMed(self):
-        conn=mysql.connector.connect(host="localhost",username="root",password="deshna_123",database="mydata")
+        conn=mysql.connector.connect(host="localhost",username="root",password="root",database="mydata")
         my_cursor=conn.cursor()
         
         sql="delete from pharma where Ref=%s"
@@ -392,7 +392,7 @@ class PharmacyManagementSystem:
         if self.ref_var.get()=="" or self.lot_var.get()=="":
             messagebox.showerror("Error","All fields are reqired")
         else:
-            conn=mysql.connector.connect(host="localhost",username="root",password="deshna_123",database="mydata")
+            conn=mysql.connector.connect(host="localhost",username="root",password="root",database="mydata")
             my_cursor=conn.cursor()
             my_cursor.execute("insert into pharmacy values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(self.ref_var.get(),self.cmpName_var.get(),self.typeMed_var.get(),self.medName_var.get(),self.lot_var.get(),self.issuedate_var.get(),self.expdate_var.get(),self.uses_var.get(),self.sideEffect_var.get(),self.warning_var.get(),self.dosage_var.get(),self.price_var.get(),self.product_var.get()))
 
@@ -403,7 +403,7 @@ class PharmacyManagementSystem:
         messagebox.showinfo("Success","data has been inserted")
 
     def fetch_data(self):
-        conn=mysql.connector.connect(host="localhost",username="root",password="deshna_123",database="mydata")
+        conn=mysql.connector.connect(host="localhost",username="root",password="root",database="mydata")
         my_cursor=conn.cursor()
         my_cursor.execute("select * from pharmacy")
         row=my_cursor.fetchall()
@@ -439,7 +439,7 @@ class PharmacyManagementSystem:
         if self.ref_var.get()=="":
             messagebox.showerror("Error","All fields are Required")
         else:
-            conn=mysql.connector.connect(host="localhost",username="root",password="deshna_123",database="mydata")
+            conn=mysql.connector.connect(host="localhost",username="root",password="root",database="mydata")
             my_cursor=conn.cursor()
             my_cursor.execute("update pharmacy set cmpName=%s,Type=%s,medname=%s,lot=%s,issuedate=%s,expdate=%s,uses=%s,sideeffect=%s,warning=%s,dosage=%s,price=%s,product=%s where refno=%s",(self.cmpName_var.get(),self.typeMed_var.get(),self.medName_var.get(),self.lot_var.get(),self.issuedate_var.get(),self.expdate_var.get(),self.uses_var.get(),self.sideEffect_var.get(),self.warning_var.get(),self.dosage_var.get(),self.price_var.get(),self.product_var.get(),self.ref_var.get()))
 
@@ -450,7 +450,7 @@ class PharmacyManagementSystem:
         messagebox.showinfo("UPDATE","Record has been Updated successfully")
 
     def delete(self):
-        conn=mysql.connector.connect(host="localhost",username="root",password="deshna_123",database="mydata")
+        conn=mysql.connector.connect(host="localhost",username="root",password="root",database="mydata")
         my_cursor=conn.cursor()
 
         sql="delete from pharmacy where refno=%s"
@@ -479,7 +479,7 @@ class PharmacyManagementSystem:
         self.product_var.set(r"")
 
     def search_data(self):   
-        conn=mysql.connector.connect(host="localhost",username="root",password="deshna_123",database="mydata")
+        conn=mysql.connector.connect(host="localhost",username="root",password="root",database="mydata")
         my_cursor=conn.cursor()
         my_cursor.execute("SELECT * FROM pharmacy WHERE " + self.search_var.get() + " LIKE '%" + self.searchTxt_var.get() + "%'")
         #my_cursor.execute("select * from pharmacy where "+ self.search_var.get() + " LIKE " +(self.searchTxt_var.get())+"%")
